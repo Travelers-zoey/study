@@ -1,98 +1,41 @@
-// function runAsync (x) {
-//     const p = new Promise(
-//       r => setTimeout(
-//         () => r(x, console.log(x))
-//       , 1000)
-//     )
-//     return p
-// }
-// Promise.all([runAsync(1), runAsync(2), runAsync(3)])
-//   .then(res => console.log(res))
+function myPromise(constructor){
+  let self=this;
+  self.status="pending" //定义状态改变前的初始状态
+  self.value=undefined;//定义状态为resolved的时候的状态
+  self.reason=undefined;//定义状态为rejected的时候的状态
+  function resolve(value){
+      //两个==="pending"，保证了状态的改变是不可逆的
+     if(self.status==="pending"){
+        self.value=value;
+        self.status="resolved";
+     }
+  }
+  function reject(reason){
+      //两个==="pending"，保证了状态的改变是不可逆的
+     if(self.status==="pending"){
+        self.reason=reason;
+        self.status="rejected";
+     }
+  }
+  //捕获构造异常
+  try{
+     constructor(resolve,reject);
+  }catch(e){
+     reject(e);
+  }
+}
 
+//同时再myPromise的原型上定义链式调用的then方法：
 
-// function runAsync(x) {
-//   const p = new Promise((r) => setTimeout(() => r(x, console.log(x)), 1000));
-//   return p;
-// }
-// Promise.race([runAsync(1), runAsync(2), runAsync(3)])
-//   .then((res) => console.log("result: ", res))
-//   .catch((err) => console.log(err));
-
-// async function fn() {
-//   // return await 1234
-//   // 等同于
-//   return 123;
-// }
-// fn().then((res) => console.log(res));
-
-
-// async function async1() {
-//   console.log("async1 start");
-//   await async2();
-//   console.log("async1 end");
-// }
-
-// async function async2() {
-//   console.log("async2");
-// }
-
-// console.log("script start");
-
-// setTimeout(function() {
-//   console.log("setTimeout");
-// }, 0);
-
-// async1();
-
-// new Promise(function(resolve) {
-//   console.log("promise1");
-//   resolve();
-// }).then(function() {
-//   console.log("promise2");
-// });
-// console.log('script end')
-
-
-
-// const p1 = new Promise((resolve) => {
-//   setTimeout(() => {
-//     resolve('resolve3');
-//     console.log('timer1')
-//   }, 0)
-//   resolve('resovle1');
-//   resolve('resolve2');
-// }).then(res => {
-//   console.log(res)
-//   setTimeout(() => {
-//     console.log(p1)
-//   }, 1000)
-//   return 1;
-// }).finally(res => {
-//   console.log('finally', res)
-// })
-
-
-
-// const arr = [1, 2, 3]
-// arr.reduce((p, x) => p.then(
-//     () => new Promise(
-//       // r => setTimeout(() => r(console.log(x)), 1000)
-//       r => setTimeout(() => console.log(r), 1000)
-//     )
-//   ), Promise.resolve()
-// )
-
-// const arr = [1, 2, 3]
-// arr.reduce((p, x) => p.then(() => 
-//   new Promise(
-//     q => setTimeout(() =>q(console.log(x)), 1000)
-//   )
-// ), Promise.resolve())
-
-// const arr = [1, 2, 3]
-// arr.reduce((p, x) => p.then(
-//     () => new Promise(
-//       r => console.log(r)
-//     )
-//   ), Promise.resolve()
-// )
+myPromise.prototype.then=function(onFullfilled,onRejected){
+ let self=this;
+ switch(self.status){
+    case "resolved":
+      onFullfilled(self.value);
+      break;
+    case "rejected":
+      onRejected(self.reason);
+      break;
+    default:       
+ }
+}
