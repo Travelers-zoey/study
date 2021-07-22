@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #div1, #div2 {
+      float:left;
+      width:198px;
+      height:66px;
+      margin:10px;
+      padding:10px;
+      border:1px solid #aaaaaa;
+    }
+  </style>
+</head>
+
+<body>
+  <div>video</div>
+  <video width="320" height="240" controls="controls">
+    <source src="movie.mp4" type="video/mp4" />
+    <source src="movie.ogg" type="video/ogg" />
+    <source src="movie.webm" type="video/webm" />
+    <object data="movie.mp4" width="320" height="240">
+      <embed src="movie.swf" width="320" height="240" />
+    </object>
+  </video>
+  <div>audio</div>
+  <audio controls="controls">
+    <source src="/i/song.ogg" type="audio/ogg">
+    <source src="/i/song.mp3" type="audio/mpeg">
+    <embed height="100" width="100" src="song.mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <div>地理定位</div>
+  <p id="location">location</p>
+  <button onclick="getLocation()">获取位置</button>
+
+  <script>
+    let x = document.getElementById("location");
+    function getLocation() {
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      else
+        x.innerHTML = '你的浏览器不支持地理定位'
+    }
+
+    function showPosition(position) {
+      x.innerHTML = "Latitude: " + position.coords.latitude + "<br />Longitude: " + position.coords.longitude;
+    }
+
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "User denied the request for Geolocation."
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Location information is unavailable."
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "The request to get user location timed out."
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "An unknown error occurred."
+          break;
+      }
+    }
+  </script>
+
+  <div>元素拖放 drag drop</div>
+  <div id="div1" ondrop="drop()" ondragover="allowDrop()"></div>
+  <img src="喻言.jpg" width="100" alt="图片" draggable="true" ondragstart="drag(event)" id="drag1">
+  <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+  <script>
+    function drag(ev) {
+      ev = ev || window.event
+      console.log(ev, 'event');
+      ev.dataTransfer.setData("Text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev = ev || window.event
+      ev.preventDefault();
+      let data = ev.dataTransfer.getData("Text");
+      console.log(data, 'data');
+      ev.target.appendChild(document.getElementById(data))
+    }
+
+    function allowDrop(ev) {
+      ev = ev || window.event
+      ev.preventDefault();
+    }
+  </script>
+</body>
+
+</html>

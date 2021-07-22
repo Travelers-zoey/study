@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      border: 15px solid red;
+      width: 250px;
+      padding: 10px 20px;
+    }
+
+    #round {
+      -webkit-border-image: url(./喻言.jpg) 30 30 round;
+      /* Safari 5 and older */
+      -o-border-image: url(./喻言.jpg) 30 30 round;
+      /* Opera */
+      border-image: url(./喻言.jpg) 30 30 round;
+    }
+
+    #stretch {
+      -webkit-border-image: url(./喻言.jpg) 30 30 stretch;
+      /* Safari 5 and older */
+      -o-border-image: url(./喻言.jpg) 30 30 stretch;
+      /* Opera */
+      border-image: url(./喻言.jpg) 30 30 stretch;
+    }
+
+    #ani {
+      width: 100px;
+      height: 200px;
+      border: 1px solid #eee;
+      animation: myfirst 2s infinite alternate;
+    }
+
+    @keyframes myfirst {
+      from {
+        background-color: #000;
+      }
+      50% {
+        background-color: chocolate;
+      }
+      to {
+        width: 200px;
+        background-color: pink;
+      }
+    }
+
+    #column {
+      columns: 3 100px;
+      column-rule: 5px solid green;
+      column-gap: 50px;
+    }
+
+    @media screen and (max-width: 1200px){
+      body {
+        background: cornsilk;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="round">这里，图像平铺（重复）来填充该区域。</div>
+  <br>
+  <div id="stretch">这里，图像被拉伸以填充该区域。</div>
+
+  <p id="ani">动画</p>
+
+  <p>这是css3 的column属性实践</p>
+  <p id="column">
+    “当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。”
+  </p>
+
+  <p>媒体查询：可是窗口宽度小于1200px，背景颜色改变</p>
+</body>
+
+</html>

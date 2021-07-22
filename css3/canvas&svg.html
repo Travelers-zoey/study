@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <main>
+    <div>canvas通过js来绘制图像</div>
+    <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">Your browser does not support the
+      canvas element.
+    </canvas>
+    <div>svg——可伸缩矢量图</div>
+    <ul>
+      <li>rect 元素的 width 和 height 属性可定义矩形的高度和宽度</li>
+      <li>style 属性用来定义 CSS 属性，fill 属性定义矩形的填充颜色，stroke-width 属性定义矩形边框的宽度，stroke 属性定义矩形边框的颜色</li>
+      <li>x 属性定义矩形的左侧位置，y 属性定义矩形的顶端位置，fill-opacity 属性定义填充颜色透明度，stroke-opacity 属性定义笔触颜色的透明度</li>
+      <li>opacity（0-1） 属性定义整个元素的透明值，rx 和 ry 属性可使矩形产生圆角</li>
+    </ul>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <rect
+        width="300"
+        height="100"
+        x="20"
+        y="20"
+        rx="20"
+        ry="20"
+        style="fill:pink;stroke-width:5;stroke:rgb(0,0,0);fill-opacity:0.5;stroke-opacity:0.9;" />
+    </svg>
+    <div>circle 中cx 和 cy 属性定义圆点的 x 和 y 坐标。如果省略 cx 和 cy，圆的中心会被设置为 (0, 0)</div>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+    </svg>
+    <div>ellipse 中cx 和 cy 属性定义圆点的 x 和 y 坐标。rx 属性定义水平半径,ry 属性定义垂直半径</div>
+    <svg width="100%" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="300" cy="90" rx="200" ry="80" style="fill:rgb(200,100,50);stroke:rgb(0,0,100);stroke-width:2"/>
+    </svg>
+    <div>x1 属性在 x 轴定义线条的开始,x2 属性在 x 轴定义线条的结束,y1 属性在 y 轴定义线条的开始,y2 属性在 y 轴定义线条的结束</div>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="50" x2="300" y2="300" style="stroke:rgb(99,99,99);stroke-width:2"/>
+    </svg>
+    <div>polygon points 属性定义多边形每个角的 x 和 y 坐标</div>
+    <svg width="100%" height="200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="220,100 300,220 170,150 123,194" style="fill:#cccccc;stroke:#000000;stroke-width:1"/>
+    </svg>
+    <div>polyline 标签用来创建仅包含直线的形状</div>
+    <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="0,0 0,20 20,20 20,40 40,40 40,60" style="fill:white;stroke:red;stroke-width:2"/>
+    </svg>
+  </main>
+  <script type="text/javascript">
+    let c = document.getElementById("myCanvas");
+    let cxt = c.getContext("2d");
+    cxt.fillStyle = '#eee';
+    cxt.fillRect(0, 0, 150, 75)
+  </script>
+</body>
+
+</html>

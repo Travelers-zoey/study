@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue 基础</title>
+    <style lang="less">
+      .middle {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        background-color: black;
+      }
+
+      .middle .sub1 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: red;
+      }
+
+      .middle .sub2 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+        background-color: white;
+      }
+
+      .middle .sub3 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        height: 100px;
+
+        margin: auto;
+        background-color: pink;
+      }
+
+      .middle .cal {
+        position: absolute;
+        width: 100px;
+        height: 50px;
+
+        left: calc((300 - 100) / 2);
+        /** calc函数符号旁边空格 **/
+        top: calc((300 - 50) / 2);
+        left: -webkit-calc((300px - 100px)/2);
+        top: -webkit-calc((300px - 50px)/2);
+        background-color: pink;
+      }
+
+      .middle2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        /**  可以注释 **/
+        height: 300px;
+
+        background: chocolate;
+      }
+
+      .middle2 .sub4 {
+        width: 100px;
+        height: 100px;
+
+        background-color: pink;
+      }
+
+      .table-cell {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 300px;
+        height: 300px;
+        background: pink;
+      }
+
+      .triangle {
+        width: 0px;
+        height: 0px;
+        border-top: 100px solid red;
+        border-right: 100px solid black;
+        border-bottom: 100px solid pink;
+        border-left: 100px solid blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="triangle"></div>
+      {{message}}
+      <h2 v-text="text1">哈哈哈</h2>
+      <h2 v-html="html1">哈哈哈</h2>
+      <h2 v-html="html2"></h2>
+      <input type="text" name="" id="" @keyup.enter="alert1" />
+      <input v-model.number="age" type="number" />
+      <ul>
+        <input type="text" />
+      </ul>
+
+      <div class="middle">
+        <!-- <div class="sub1">111</div>
+      <div class="sub2">111</div>
+      <div class="sub3">111</div> -->
+        <div class="cal">111</div>
+      </div>
+      <div class="middle2">
+        <div class="sub4">111</div>
+      </div>
+      <div class="table-cell">
+        <p>未来可期</p>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="../js/10_debounce.js"></script>
+  <script type="module">
+    // import {HashTable} from '../datastructure/05_哈希表/hashFuc.js'
+    // import {BinarySearchTree} from '../datastructure/06_树/tree.js'
+    // import {Graph} from '../datastructure/07_图/graph.js'
+    import { ArrayList } from "../datastructure/08_排序/sort.js";
+    let app = new Vue({
+      el: "#app",
+      data: {
+        message: "钱钱钱",
+        text1: "后面有哈哈哈嘛？无，因为v-text替换标签所有内容，解析为文本",
+        html1: "后面有哈哈哈嘛？无，因为v-html设置标签的innerHTML",
+        html2: '<a href="http://baidu.com">百度一下</a>',
+        age: "111",
+      },
+      created() {
+        this.alert1();
+      },
+      methods: {
+        alert1() {},
+      },
+    });
+  </script>
+</html>
