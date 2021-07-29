@@ -1,6 +1,11 @@
 let add = function (a, b, c) {
 	return a + b +c
 }
+/**
+ * 函数柯里化
+ * @param {Function} fn 函数
+ * @returns 
+ */
 function curry(fn) {
   let args = [].slice.call(arguments, 1); //第一个参数是函数add
   // let args = Array.prototype.slice.call(arguments, 1);

@@ -1,3 +1,8 @@
+/**
+ * 回文数判断
+ * @param {Nmber} x 回文数
+ * @returns 
+ */
 function isPalindrome(x) {
   if(x < 0) return false;
   let str = x + '';
