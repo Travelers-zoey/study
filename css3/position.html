@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .left {
+        position: absolute;
+        left: 0;
+        width: 300px;
+        background: red;
+        height: 100px;
+      }
+      .right {
+        position: absolute;
+        right: 0;
+        width: 300px;
+        background: pink;
+        height: 100px;
+      }
+      .center {
+        position: absolute;
+        right: 300px;
+        left: 300px;
+        background: yellow;
+        height: 100px;
+      }
+
+      .box {
+        border: 1px solid pink;
+        /* height: 100px; */ /* 子元素absolute或者fixed引起的高度塌陷，只能加高度解决 */
+        overflow: hidden;
+      }
+      /* .box:after {
+        content: '';
+        height: 0;
+        display: block;
+        clear: both;
+        visibility: hidden;
+      } */
+      .pos {
+        width: 300px;
+        /* position: absolute; */
+        float: left;
+        height: 400px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="left"></div>
+    <div class="center"></div>
+    <div class="right"></div> -->
+
+    <div class="box">
+      <div class="pos"></div>
+    </div>
+  </body>
+</html>

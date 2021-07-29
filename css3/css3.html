@@ -60,6 +60,16 @@
         background: cornsilk;
       }
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 300px);
+      grid-column-gap: 2px;
+    }
+    .box {
+      height: 200px;
+      border: 1px solid pink;
+    }
   </style>
 </head>
 
@@ -76,6 +86,15 @@
   </p>
 
   <p>媒体查询：可是窗口宽度小于1200px，背景颜色改变</p>
+
+  <p>grid布局</p>
+  <main class="grid">
+    <p class="box"></p>
+    <p class="box"></p>
+    <p class="box"></p>
+    <p class="box"></p>
+    <p class="box"></p>
+  </main>
 </body>
 
 </html>
