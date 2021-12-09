@@ -4,6 +4,7 @@
 var arr = [1, 1, 2, 5, 6, 3, 5, 5, 6, 8, 9, 8];
 console.log(Array.from(new Set(arr)), "set数组去重");
 console.log([...new Set(arr)], "set数组去重");
+console.log('测试');
 
 /**
  * 数组去重二————for循环
